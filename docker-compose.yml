@@ -1,15 +1,16 @@
 services:
   db:
     image: postgres:15-alpine
+    container_name: theusnewsfeed-db
     restart: always
     environment:
-      POSTGRES_USER: tribune
-      POSTGRES_PASSWORD: tribune123
-      POSTGRES_DB: tribune
+      POSTGRES_USER: theusnewsfeed
+      POSTGRES_PASSWORD: theusnewsfeed_pass_123
+      POSTGRES_DB: theusnewsfeed
     ports:
-      - '5433:5432'
+      - '127.0.0.1:5441:5432'
     volumes:
-      - tribune_db_data:/var/lib/postgresql/data
+      - theusnewsfeed_db_data:/var/lib/postgresql/data
 
 volumes:
-  tribune_db_data:
+  theusnewsfeed_db_data:

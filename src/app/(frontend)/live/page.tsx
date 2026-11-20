@@ -7,29 +7,29 @@ import { Article } from '@/types'
 
 export const metadata: Metadata = {
   title: 'Live Coverage',
-  description: 'Follow breaking news and live parliamentary coverage from Asian Dot.',
+  description: 'Follow breaking news and live coverage from Washington and across the US from The US News Feed.',
   alternates: {
     canonical: '/live',
   },
   openGraph: {
-    title: 'Live Coverage — Asian Dot',
-    description: 'Follow breaking news and live parliamentary coverage from Asian Dot.',
+    title: 'Live Coverage — The US News Feed',
+    description: 'Follow breaking news and live coverage from Washington and across the US from The US News Feed.',
     url: '/live',
-    siteName: 'Asian Dot',
+    siteName: 'The US News Feed',
     images: [
       {
         url: '/logo.png',
         width: 1024,
         height: 1024,
-        alt: 'Asian Dot Logo',
+        alt: 'The US News Feed Logo',
       },
     ],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Live Coverage — Asian Dot',
-    description: 'Follow breaking news and live parliamentary coverage from Asian Dot.',
+    title: 'Live Coverage — The US News Feed',
+    description: 'Follow breaking news and live coverage from Washington and across the US from The US News Feed.',
     images: ['/logo.png'],
   },
 }
@@ -70,9 +70,9 @@ export default async function LivePage() {
           </h1>
           <p
             className="text-base mb-4"
-            style={{ color: 'var(--text-secondary)', fontFamily: 'Source Serif 4, serif' }}
+            style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-sans)' }}
           >
-            Stay tuned for live parliamentary sessions and breaking political developments.
+            Stay tuned for live coverage of Congress, the White House, and breaking political developments.
           </p>
           <div className="flex items-center gap-4">
             <span className="label-caps text-sm" style={{ color: 'var(--text-muted)' }}>

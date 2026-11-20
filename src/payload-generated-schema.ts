@@ -268,7 +268,7 @@ export const media = pgTable(
   "media",
   {
     id: serial("id").primaryKey(),
-    alt: varchar("alt").default("Asian Dot"),
+    alt: varchar("alt").default("The US News Feed"),
     caption: varchar("caption"),
     source: enum_media_source("source").default("local"),
     externalUrl: varchar("external_url"),

@@ -1,12 +1,12 @@
 #!/bin/bash
-# deploy.sh — Asian Dot Hybrid VPS PM2 Deployment Script
+# deploy.sh — The US News Feed Hybrid VPS PM2 Deployment Script
 set -e
 
 GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
-echo -e "${GREEN}🚀 Deploying Asian Dot (Hybrid VPS PM2)...${NC}"
+echo -e "${GREEN}🚀 Deploying The US News Feed (Hybrid VPS PM2)...${NC}"
 
 # 1. Pull latest code
 echo "📥 Pulling latest code..."
@@ -29,7 +29,7 @@ echo "🔥 Checking application health..."
 max_attempts=12
 attempt=1
 while [ $attempt -le $max_attempts ]; do
-    if curl -s -f -H "Host: asiandot.com" http://localhost:3000 > /dev/null; then
+    if curl -s -f -H "Host: theusnewsfeed.com" http://localhost:3000 > /dev/null; then
         echo -e "${GREEN}✓ Application updated successfully!${NC}"
         break
     fi

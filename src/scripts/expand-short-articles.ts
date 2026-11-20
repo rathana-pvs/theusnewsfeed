@@ -95,7 +95,7 @@ async function main() {
       count++
       console.log(`\n[${count}/${limit}] Expanding: "${doc.title}" (Current: ${wordCount} words)`)
 
-      const prompt = `You are a senior investigative editor at Asian Dot. Expand the following short news wire brief into a comprehensive, authoritative news article for publication.
+      const prompt = `You are a senior investigative editor at The US News Feed, a US news publication writing in American English for an American audience. Expand the following short news wire brief into a comprehensive, authoritative news article for publication.
 
 ARTICLE HEADLINE: "${doc.title}"
 EXISTING SHORT TEXT:
@@ -107,7 +107,7 @@ RULES:
    - Paragraph 1-2: The Breaking News Event (key figures, locations, primary development).
    - Paragraph 3-4: Background & Context (historical timeline, previous events leading to this).
    - Paragraph 5-6: Official Statements & Quotations (synthesizing statements and attributing reporting).
-   - Paragraph 7-8: Geopolitical / Policy Implications (what this means going forward).
+   - Paragraph 7-8: Policy Implications (what this means for Americans going forward).
 3. DO NOT repeat the title in the body.
 4. DO NOT use any markdown headings (no ## or ###).
 5. Provide an updated, complete lead excerpt strictly under 160 characters ending with a period.

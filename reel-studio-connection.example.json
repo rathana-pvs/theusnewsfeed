@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "name": "Asian Dot",
-  "baseUrl": "https://asiandot.com",
+  "name": "The US News Feed",
+  "baseUrl": "https://theusnewsfeed.com",
   "adapter": "payload-news-v1",
   "email": "",
   "password": ""

@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const article = await getArticle(slug, locale)
   if (!article) return { title: 'Article Not Found' }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://asiandot.com'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://theusnewsfeed.com'
 
   const seoTitle = article.og?.metaTitle || article.meta?.title || article.title
   const seoDescription = article.og?.metaDescription || article.meta?.description || article.excerpt
@@ -39,14 +39,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       canonical: `/article/${slug}`,
     },
     openGraph: {
-      siteName: 'Asian Dot',
+      siteName: 'The US News Feed',
       title: seoTitle,
       description: seoDescription,
       images: ogImage ? [ogImage] : [],
       type: 'article',
       url: `${siteUrl}/article/${slug}`,
       publishedTime: article.publishedAt,
-      authors: [article.author?.name || 'Asian Dot Staff'],
+      authors: [article.author?.name || 'The US News Feed Staff'],
     },
     twitter: {
       card: 'summary_large_image',

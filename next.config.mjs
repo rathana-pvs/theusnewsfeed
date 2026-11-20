@@ -48,11 +48,11 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'asiandot.com',
+        hostname: 'theusnewsfeed.com',
       },
       {
         protocol: 'https',
-        hostname: 'www.asiandot.com',
+        hostname: 'www.theusnewsfeed.com',
       },
     ],
   },

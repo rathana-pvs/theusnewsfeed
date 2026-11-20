@@ -16,6 +16,7 @@ const config: Config = {
         'text-primary': 'var(--text-primary)',
         'text-secondary': 'var(--text-secondary)',
         'text-muted': 'var(--text-muted)',
+        accent: 'var(--accent)',
         'accent-gold': 'var(--accent-gold)',
         'accent-red': 'var(--accent-red)',
         'accent-red-bright': 'var(--accent-red-bright)',
@@ -23,8 +24,8 @@ const config: Config = {
         'border-subtle': 'var(--border-subtle)',
       },
       fontFamily: {
-        serif: ['Source Serif 4', 'Georgia', 'serif'],
-        'source-serif': ['Source Serif 4', 'Georgia', 'serif'],
+        serif: ['Inter', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        'source-serif': ['Inter', 'Helvetica Neue', 'Arial', 'sans-serif'],
         sans: ['Inter', 'Helvetica Neue', 'Arial', 'sans-serif'],
         mono: ['Inter', 'Helvetica Neue', 'Arial', 'sans-serif'],
       },
@@ -32,9 +33,9 @@ const config: Config = {
         DEFAULT: {
           css: {
             color: 'var(--text-primary)',
-            fontFamily: 'Source Serif 4, Georgia, serif',
-            fontSize: '19px',
-            lineHeight: '1.6',
+            fontFamily: 'Inter, Helvetica Neue, Arial, sans-serif',
+            fontSize: '18px',
+            lineHeight: '1.7',
           },
         },
       },

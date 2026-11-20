@@ -6,7 +6,7 @@ export const Categories: CollectionConfig = {
   slug: 'categories',
   admin: {
     useAsTitle: 'name',
-    description: 'Article categories for Asian Dot.',
+    description: 'Article categories for The US News Feed.',
   },
   access: {
     read: () => true,

@@ -15,19 +15,30 @@ interface HeaderProps {
 function Logo({ small = false }: { small?: boolean }) {
   return (
     <span
-      className="inline-flex items-center justify-center select-none"
+      className="inline-flex items-center select-none"
       style={{
-        background: 'var(--accent-red)',
-        color: '#fff',
-        fontFamily: 'var(--font-serif)',
-        fontWeight: 600,
-        letterSpacing: '-0.01em',
+        gap: small ? 7 : 9,
+        color: 'var(--text-primary)',
+        fontFamily: 'var(--font-sans)',
+        fontWeight: 800,
+        letterSpacing: '-0.04em',
         lineHeight: 1,
-        fontSize: small ? 18 : 22,
-        padding: small ? '8px 10px' : '10px 14px',
+        fontSize: small ? 18 : 21,
       }}
     >
-      Asian Dot
+      <span
+        aria-hidden
+        style={{
+          width: small ? 9 : 10,
+          height: small ? 9 : 10,
+          borderRadius: '50%',
+          background: 'var(--accent)',
+          flexShrink: 0,
+        }}
+      />
+      <span>
+        The US News<span style={{ color: 'var(--accent)' }}> Feed</span>
+      </span>
     </span>
   )
 }
@@ -74,7 +85,7 @@ export function Header({ categories, locale }: HeaderProps) {
                   <path d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               </button>
-              <Link href="/" aria-label="Asian Dot home" className="flex items-center">
+              <Link href="/" aria-label="The US News Feed home" className="flex items-center">
                 <Logo />
               </Link>
             </div>
@@ -111,10 +122,10 @@ export function Header({ categories, locale }: HeaderProps) {
           >
             <Link
               href="/"
-              className="flex-shrink-0 h-full flex items-center text-[14px] font-semibold border-b-[3px]"
+              className="flex-shrink-0 h-full flex items-center text-[14px] font-semibold border-b-2"
               style={{
                 color: 'var(--text-primary)',
-                borderBottomColor: pathname === '/' ? 'var(--accent-red)' : 'transparent',
+                borderBottomColor: pathname === '/' ? 'var(--text-primary)' : 'transparent',
               }}
             >
               {dict.home}
@@ -126,10 +137,10 @@ export function Header({ categories, locale }: HeaderProps) {
                 <Link
                   key={cat.id}
                   href={href}
-                  className="flex-shrink-0 h-full flex items-center text-[14px] font-medium border-b-[3px] hover:text-[var(--accent-red)]"
+                  className="flex-shrink-0 h-full flex items-center text-[14px] font-medium border-b-2 hover:text-[var(--text-primary)]"
                   style={{
                     color: active ? 'var(--text-primary)' : 'var(--text-secondary)',
-                    borderBottomColor: active ? 'var(--accent-red)' : 'transparent',
+                    borderBottomColor: active ? 'var(--text-primary)' : 'transparent',
                     fontWeight: active ? 600 : 500,
                   }}
                 >
@@ -154,7 +165,7 @@ export function Header({ categories, locale }: HeaderProps) {
             style={{ background: 'var(--bg-primary)' }}
           >
             <div className="flex items-center justify-between px-4 h-14" style={{ borderBottom: '1px solid var(--border)' }}>
-              <Link href="/" aria-label="Asian Dot home">
+              <Link href="/" aria-label="The US News Feed home">
                 <Logo small />
               </Link>
               <button
@@ -182,7 +193,7 @@ export function Header({ categories, locale }: HeaderProps) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="px-5 py-3 text-[16px] font-semibold border-l-[3px]"
+                  className="px-5 py-3 text-[16px] font-semibold border-l-2"
                   style={{
                     color: 'var(--text-primary)',
                     borderLeftColor: item.active ? 'var(--accent-red)' : 'transparent',

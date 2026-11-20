@@ -84,9 +84,9 @@ export function NavigationProgress() {
         style={{
           height: '100%',
           width: `${width}%`,
-          background: 'linear-gradient(90deg, var(--accent-gold), #f0d070)',
+          background: 'var(--accent)',
           transition: width === 100 ? 'width 0.3s ease-out' : 'width 0.12s ease-out',
-          boxShadow: '0 0 10px rgba(201,168,76,0.6)',
+          
         }}
       />
     </div>

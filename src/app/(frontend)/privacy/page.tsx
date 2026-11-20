@@ -5,7 +5,7 @@ const privacyEmail = 'varathana.tech@gmail.com'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'How Asian Dot collects, uses, and protects information when you visit our website or contact our newsroom.',
+  description: 'How The US News Feed collects, uses, and protects information when you visit our website or contact our newsroom.',
   alternates: { canonical: '/privacy' },
 }
 
@@ -70,7 +70,7 @@ export default function PrivacyPage() {
           </div>
 
           <PolicySection id="overview" number="01" title="Overview">
-            <p>This policy applies to Asian Dot’s website and explains what information may be processed when you read our coverage, use site features, or communicate with us.</p>
+            <p>This policy applies to The US News Feed’s website and explains what information may be processed when you read our coverage, use site features, or communicate with us.</p>
             <p>Third-party websites linked from our articles have their own privacy practices. We encourage you to review those policies before providing information to them.</p>
           </PolicySection>
 
@@ -90,7 +90,7 @@ export default function PrivacyPage() {
           </PolicySection>
 
           <PolicySection id="cookies" number="04" title="Cookies, analytics, and advertising">
-            <p>Cookies and related technologies may remember site preferences, measure usage, prevent abuse, and support advertising. Asian Dot uses third-party services that may include Google Analytics, Google AdSense, AdsKeeper, and website audience measurement tools.</p>
+            <p>Cookies and related technologies may remember site preferences, measure usage, prevent abuse, and support advertising. The US News Feed uses third-party services that may include Google Analytics, Google AdSense, AdsKeeper, and website audience measurement tools.</p>
             <p>These providers may process identifiers and activity under their own policies. Where required, a consent notice lets you manage non-essential cookies. You can also limit cookies through your browser and manage Google advertising preferences in <a href="https://myadcenter.google.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-[var(--accent-red)] underline">My Ad Center</a>.</p>
           </PolicySection>
 

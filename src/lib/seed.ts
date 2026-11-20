@@ -194,20 +194,20 @@ const seed = async () => {
   console.log('--- Creating Admin User ---')
   const existingAdmin = await payload.find({
     collection: 'users',
-    where: { email: { equals: 'admin@asiandot.com' } },
+    where: { email: { equals: 'admin@theusnewsfeed.com' } },
   })
 
   if (existingAdmin.docs.length === 0) {
     await payload.create({
       collection: 'users',
       data: {
-        email: 'admin@asiandot.com',
+        email: 'admin@theusnewsfeed.com',
         password: 'adminpassword123',
-        name: 'Asian Dot Admin',
+        name: 'The US News Feed Admin',
         role: 'admin',
       },
     })
-    console.log('Created admin user: admin@asiandot.com / adminpassword123')
+    console.log('Created admin user: admin@theusnewsfeed.com / adminpassword123')
   }
 
   console.log('Seed completed successfully!')

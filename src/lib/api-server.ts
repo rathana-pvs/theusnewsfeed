@@ -142,8 +142,9 @@ export const getRelatedArticles = unstable_cache(
     const result = await payload.find({
       collection: 'articles',
       where,
-      limit: 3,
+      limit: 8,
       depth: 2,
+      sort: '-publishedAt',
       locale: locale as any,
     })
     return result.docs as unknown as Article[]

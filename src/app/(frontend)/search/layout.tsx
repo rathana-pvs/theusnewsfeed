@@ -2,29 +2,29 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Search Articles',
-  description: 'Search articles, investigative reports, and political analysis from Asian Dot.',
+  description: 'Search articles, investigative reports, and political analysis from The US News Feed.',
   alternates: {
     canonical: '/search',
   },
   openGraph: {
-    title: 'Search Articles — Asian Dot',
-    description: 'Search articles, investigative reports, and political analysis from Asian Dot.',
+    title: 'Search Articles — The US News Feed',
+    description: 'Search articles, investigative reports, and political analysis from The US News Feed.',
     url: '/search',
-    siteName: 'Asian Dot',
+    siteName: 'The US News Feed',
     images: [
       {
         url: '/logo.png',
         width: 1024,
         height: 1024,
-        alt: 'Asian Dot Logo',
+        alt: 'The US News Feed Logo',
       },
     ],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Search Articles — Asian Dot',
-    description: 'Search articles, investigative reports, and political analysis from Asian Dot.',
+    title: 'Search Articles — The US News Feed',
+    description: 'Search articles, investigative reports, and political analysis from The US News Feed.',
     images: ['/logo.png'],
   },
 }

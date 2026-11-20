@@ -8,7 +8,7 @@ const editorialEmail = 'varathana.tech@gmail.com'
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Learn about Asian Dot, our editorial purpose, reporting principles, and commitment to clear, independent news coverage.',
+    'Learn about The US News Feed, our editorial purpose, reporting principles, and commitment to clear, independent news coverage.',
   alternates: { canonical: '/about' },
 }
 
@@ -38,22 +38,22 @@ const principles = [
 const coverage = [
   'Politics and public institutions',
   'Policy, law, and elections',
-  'Regional and international affairs',
+  'National affairs and the US role in the world',
   'Economics, security, and society',
 ]
 
 export default function AboutPage() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://asiandot.com'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://theusnewsfeed.com'
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
     url: `${siteUrl}/about`,
     mainEntity: {
       '@type': 'NewsMediaOrganization',
-      name: 'Asian Dot',
+      name: 'The US News Feed',
       url: siteUrl,
       email: editorialEmail,
-      description: 'An independent digital publication covering politics, policy, and regional affairs.',
+      description: 'An independent digital publication covering US politics, policy, and national affairs.',
     },
   }
 
@@ -65,13 +65,13 @@ export default function AboutPage() {
         <div className="mx-auto grid max-w-[1280px] lg:grid-cols-2">
           <div className="flex flex-col justify-center px-5 py-16 sm:px-8 sm:py-24 lg:px-12 lg:py-32">
             <p className="mb-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--accent-red)]">
-              About Asian Dot
+              About The US News Feed
             </p>
             <h1 className="max-w-2xl font-display text-5xl font-black leading-[0.98] tracking-[-0.04em] sm:text-7xl">
               News with clarity,<br />context, and purpose.
             </h1>
             <p className="mt-8 max-w-xl text-lg leading-8 text-[var(--text-secondary)] sm:text-xl">
-              Asian Dot is an independent digital publication covering the decisions, institutions, and ideas shaping Asia and the wider world.
+              The US News Feed is an independent digital publication covering the decisions, institutions, and ideas shaping the United States.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Link href="/" className="bg-[var(--accent-red)] px-5 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-white">
@@ -107,8 +107,8 @@ export default function AboutPage() {
             <h2 className="mt-4 font-display text-3xl font-bold leading-tight sm:text-4xl">Make complex stories easier to understand.</h2>
           </div>
           <div className="space-y-6 text-lg leading-8 text-[var(--text-secondary)]">
-            <p>Public life moves quickly. Headlines arrive faster than context, and important details are often buried beneath commentary. Asian Dot exists to help readers see the full picture.</p>
-            <p>We focus on accessible reporting and analysis across politics, policy, international affairs, and the issues that connect them. Our goal is straightforward: explain significant developments carefully, fairly, and in language people can use.</p>
+            <p>Public life moves quickly. Headlines arrive faster than context, and important details are often buried beneath commentary. The US News Feed exists to help readers see the full picture.</p>
+            <p>We focus on accessible reporting and analysis across US politics, policy, the economy, and the issues that connect them. Our goal is straightforward: explain significant developments carefully, fairly, and in language people can use.</p>
           </div>
         </div>
       </section>
@@ -136,7 +136,7 @@ export default function AboutPage() {
           <div>
             <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--accent-red)]">Coverage</p>
             <h2 className="mt-4 font-display text-4xl font-bold tracking-tight">What we follow</h2>
-            <p className="mt-5 max-w-lg leading-7 text-[var(--text-secondary)]">Our reporting follows power, policy, and their real-world effects, with particular attention to Asia and its relationship with the world.</p>
+            <p className="mt-5 max-w-lg leading-7 text-[var(--text-secondary)]">Our reporting follows power, policy, and their real-world effects, from Washington to statehouses and communities across America.</p>
           </div>
           <ol className="border-t border-[var(--border)]">
             {coverage.map((item, index) => (

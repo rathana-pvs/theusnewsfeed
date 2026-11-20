@@ -76,7 +76,7 @@ export const Media: CollectionConfig = {
       name: 'alt',
       type: 'text',
       required: false,
-      defaultValue: 'Asian Dot',
+      defaultValue: 'The US News Feed',
       admin: {
         description: 'Alt text for accessibility and SEO',
       },

@@ -11,7 +11,7 @@ export const Articles: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'category', 'author', 'status', 'publishedAt'],
-    description: 'News articles published on Asian Dot.',
+    description: 'News articles published on The US News Feed.',
   },
   access: {
     read: ({ req }) => {

@@ -10,7 +10,7 @@ export function ContactForm() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const subject = encodeURIComponent(`[Asian Dot] ${formData.subject}`)
+    const subject = encodeURIComponent(`[The US News Feed] ${formData.subject}`)
     const body = encodeURIComponent(`From: ${formData.name}\nReply email: ${formData.email}\n\n${formData.message}`)
     window.location.href = `mailto:${editorialEmail}?subject=${subject}&body=${body}`
     setOpened(true)

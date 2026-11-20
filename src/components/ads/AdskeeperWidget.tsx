@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { gateVariantParam } from '@/lib/experiments'
+import { ADS_ENABLED } from '@/lib/ads'
 
 interface AdskeeperWidgetProps {
   widgetId: string
@@ -227,6 +228,7 @@ export default function AdskeeperWidget({
     }
   }, [filled, widgetId, placement, adType])
 
+  if (!ADS_ENABLED) return null
   if (isMatch === null) return null
   if (isMatch === false) return null
 

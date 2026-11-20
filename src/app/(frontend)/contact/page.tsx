@@ -7,7 +7,7 @@ const editorialEmail = 'varathana.tech@gmail.com'
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: 'Contact the Asian Dot newsroom with questions, story tips, corrections, press inquiries, or privacy requests.',
+  description: 'Contact the The US News Feed newsroom with questions, story tips, corrections, press inquiries, or privacy requests.',
   alternates: { canonical: '/contact' },
 }
 
@@ -35,15 +35,15 @@ const contactRoutes = [
 ]
 
 export default function ContactPage() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://asiandot.com'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://theusnewsfeed.com'
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
-    name: 'Contact Asian Dot',
+    name: 'Contact The US News Feed',
     url: `${siteUrl}/contact`,
     mainEntity: {
       '@type': 'NewsMediaOrganization',
-      name: 'Asian Dot',
+      name: 'The US News Feed',
       email: editorialEmail,
       url: siteUrl,
     },

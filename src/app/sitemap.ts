@@ -11,7 +11,7 @@ const MAX_ARTICLES = 45000
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const payload = await getPayloadClient()
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://asiandot.com'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://theusnewsfeed.com'
 
   // Static pages (excluding search to avoid index bloat)
   const staticPages = ['', '/about', '/contact', '/privacy', '/live']

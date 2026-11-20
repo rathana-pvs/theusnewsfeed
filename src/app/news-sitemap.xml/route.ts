@@ -7,7 +7,7 @@ import { getPayloadClient } from '@/lib/payload'
  */
 export const dynamic = 'force-dynamic'
 
-const PUBLICATION_NAME = 'Asian Dot'
+const PUBLICATION_NAME = 'The US News Feed'
 const LANGUAGE = 'en'
 
 function escapeXml(value: string): string {
@@ -20,7 +20,7 @@ function escapeXml(value: string): string {
 }
 
 export async function GET() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://asiandot.com'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://theusnewsfeed.com'
   const since = new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString()
 
   const payload = await getPayloadClient()

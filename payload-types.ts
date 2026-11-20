@@ -128,7 +128,7 @@ export interface UserAuthOperations {
   };
 }
 /**
- * News articles published on Asian Dot.
+ * News articles published on The US News Feed.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "articles".
@@ -260,7 +260,7 @@ export interface Media {
   };
 }
 /**
- * Article categories for Asian Dot.
+ * Article categories for The US News Feed.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "categories".
@@ -282,7 +282,7 @@ export interface Category {
   createdAt: string;
 }
 /**
- * Asian Dot staff and contributors.
+ * The US News Feed staff and contributors.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "authors".

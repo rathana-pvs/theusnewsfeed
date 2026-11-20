@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Article } from '@/types'
 import { i18nStrings } from '@/lib/i18n'
-import { formatDate, jsonLdString } from '@/lib/utils'
+import { formatDate, formatRelativeDate, jsonLdString } from '@/lib/utils'
 import { ReadingBar } from '@/components/ui/ReadingBar'
 import { RichText } from '@/components/RichText'
 import AdskeeperWidget from '@/components/ads/AdskeeperWidget'
@@ -13,7 +13,7 @@ const dict = i18nStrings.en
 
 /** Article layout shared by /article/[slug] and the tracked /article/[key]/[slug] route. */
 export function ArticleView({ article, related }: { article: Article; related: Article[] }) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://asiandot.com'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://theusnewsfeed.com'
   const heroImage = article.coverImage?.url || 'https://picsum.photos/seed/article/1400/900'
   const categoryName = article.category
     ? (dict as any)[article.category.slug] || article.category.name
@@ -35,12 +35,12 @@ export function ArticleView({ article, related }: { article: Article; related: A
     dateModified: article.updatedAt,
     author: [{
       '@type': 'Person',
-      name: authorName || 'Asian Dot Staff',
+      name: authorName || 'The US News Feed Staff',
       url: `${siteUrl}/about`,
     }],
     publisher: {
       '@type': 'Organization',
-      name: 'Asian Dot',
+      name: 'The US News Feed',
       url: siteUrl,
       logo: { '@type': 'ImageObject', url: `${siteUrl}/logo.png` },
     },
@@ -54,33 +54,53 @@ export function ArticleView({ article, related }: { article: Article; related: A
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 pt-6 sm:pt-10 pb-6">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-12">
           <article className="min-w-0 w-full max-w-[720px] lg:mx-auto">
-            {/* Fly-title */}
-            <div className="mb-3 flex flex-wrap items-center gap-x-2 text-[14px] font-semibold">
+            {/* Breadcrumb */}
+            <nav aria-label="Breadcrumb" className="mb-5 flex items-center gap-2 text-[13px] font-medium" style={{ color: 'var(--text-muted)' }}>
+              <Link href="/" className="hover:text-[var(--text-primary)]">{dict.home}</Link>
               {article.category && (
-                <Link href={`/category/${article.category.slug}`} className="hover:underline" style={{ color: 'var(--accent-red)' }}>
-                  {categoryName}
-                </Link>
+                <>
+                  <span aria-hidden>/</span>
+                  <Link href={`/category/${article.category.slug}`} className="hover:text-[var(--text-primary)]">
+                    {categoryName}
+                  </Link>
+                </>
               )}
               {article.isBreaking && (
-                <span style={{ color: 'var(--accent-red)' }}>
-                  {article.category ? '| ' : ''}Breaking
+                <span
+                  className="ml-1 px-2 py-0.5 rounded-full text-[11px] font-semibold uppercase tracking-[0.06em]"
+                  style={{ background: 'var(--accent-dim)', color: 'var(--accent)' }}
+                >
+                  Breaking
                 </span>
               )}
-            </div>
+            </nav>
 
-            <h1 className="headline" style={{ fontSize: 'clamp(30px, 5vw, 46px)', lineHeight: 1.08 }}>
+            <h1 className="headline" style={{ fontSize: 'clamp(30px, 4.6vw, 46px)', lineHeight: 1.08 }}>
               {article.title}
             </h1>
 
             {article.excerpt && (
-              <p className="rubric mt-4" style={{ fontSize: 'clamp(19px, 2.4vw, 23px)', lineHeight: 1.35 }}>
+              <p className="rubric mt-4" style={{ fontSize: 'clamp(18px, 2.2vw, 21px)', lineHeight: 1.45 }}>
                 {article.excerpt}
               </p>
             )}
 
+            {/* Byline */}
+            <p className="meta mt-5" style={{ fontSize: 13 }}>
+              {authorName && <span style={{ color: 'var(--text-secondary)' }}>By {authorName} · </span>}
+              {article.publishedAt && (
+                <time dateTime={article.publishedAt}>{formatDate(article.publishedAt, 'MMM d, yyyy')}</time>
+              )}
+              {article.publishedAt && article.readTime ? ' · ' : ''}
+              {article.readTime ? `${article.readTime} ${dict.minRead}` : ''}
+            </p>
+
             {/* Image and caption */}
-            <figure className="mt-6 sm:mt-8 -mx-4 sm:mx-0">
-              <div className="relative w-full" style={{ aspectRatio: '16 / 9', background: 'var(--bg-surface)' }}>
+            <figure className="mt-6 sm:mt-8">
+              <div
+                className="relative w-full overflow-hidden rounded-xl"
+                style={{ aspectRatio: '16 / 9', background: 'var(--bg-surface)' }}
+              >
                 <Image
                   src={heroImage}
                   alt={article.coverImage?.alt || article.title}
@@ -95,26 +115,12 @@ export function ArticleView({ article, related }: { article: Article; related: A
                 const caption = article.credit
                   ? `Source: ${article.credit}`
                   : alt && alt.trim() !== article.title.trim() ? alt : ''
-                return caption ? <figcaption className="meta mt-2 px-4 sm:px-0">{caption}</figcaption> : null
+                return caption ? <figcaption className="meta mt-2">{caption}</figcaption> : null
               })()}
             </figure>
 
-            {/* Date line */}
-            <div
-              className="mt-6 pb-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px]"
-              style={{ color: 'var(--text-muted)', borderBottom: '1px solid var(--border)' }}
-            >
-              {article.publishedAt && (
-                <time dateTime={article.publishedAt} className="font-semibold" style={{ color: 'var(--text-primary)' }}>
-                  {formatDate(article.publishedAt, 'MMM do yyyy')}
-                </time>
-              )}
-              {authorName && <span>By {authorName}</span>}
-              {article.readTime ? <span>{article.readTime} {dict.minRead}</span> : null}
-            </div>
-
             {/* Body */}
-            <div className="article-body max-w-none mt-6 mb-10" data-article-content>
+            <div className="article-body max-w-none mt-8 mb-10" data-article-content>
               {article.content ? (
                 <RichText
                   content={article.content}
@@ -134,8 +140,8 @@ export function ArticleView({ article, related }: { article: Article; related: A
                 {article.tags.map((tag: any) => (
                   <span
                     key={tag.id || tag.name}
-                    className="text-[12px] font-semibold px-2.5 py-1"
-                    style={{ border: '1px solid var(--border)', color: 'var(--text-secondary)' }}
+                    className="text-[12px] font-medium px-3 py-1 rounded-full"
+                    style={{ background: 'var(--bg-surface)', color: 'var(--text-secondary)' }}
                   >
                     {tag.name}
                   </span>
@@ -145,7 +151,7 @@ export function ArticleView({ article, related }: { article: Article; related: A
 
             {/* Our own stories first, so readers who finish keep reading here;
                 the ad feed then catches everyone who keeps scrolling. */}
-            <RelatedArticles articles={related} categoryName={categoryName} />
+            <RelatedArticles articles={related.slice(0, 3)} categoryName={categoryName} />
 
             {adskeeper.articleBottom && (
               // Keep this unit in normal document flow for placement compliance.
@@ -157,7 +163,34 @@ export function ArticleView({ article, related }: { article: Article; related: A
 
           {/* Right rail, desktop only */}
           <aside className="hidden lg:block">
-            <div className="sticky top-32">
+            <div className="sticky top-32 flex flex-col gap-8">
+              {related.length > 3 && (
+                <section>
+                  <div className="section-head !mb-1">
+                    <h2>{dict.latest}</h2>
+                  </div>
+                  <ol>
+                    {related.slice(3, 8).map((a, i) => (
+                      <li
+                        key={a.id}
+                        className="flex gap-4 py-4"
+                        style={i > 0 ? { borderTop: '1px solid var(--border-subtle)' } : undefined}
+                      >
+                        <span
+                          className="flex-shrink-0 w-6 tabular-nums"
+                          style={{ fontSize: 15, fontWeight: 700, lineHeight: 1.35, color: 'var(--accent)' }}
+                        >
+                          {String(i + 1).padStart(2, '0')}
+                        </span>
+                        <Link href={`/article/${a.slug}`} className="group block min-w-0">
+                          <span className="headline block" style={{ fontSize: 15, lineHeight: 1.3 }}>{a.title}</span>
+                          {a.publishedAt && <span className="meta block mt-1.5">{formatRelativeDate(a.publishedAt)}</span>}
+                        </Link>
+                      </li>
+                    ))}
+                  </ol>
+                </section>
+              )}
               {adskeeper.articleSidebar && (
                 <AdskeeperWidget
                   widgetId={adskeeper.articleSidebar}

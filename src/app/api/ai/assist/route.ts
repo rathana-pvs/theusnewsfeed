@@ -365,7 +365,7 @@ async function scrapeUrlDirectly(url: string) {
       .toLowerCase()
       .replace(/[^a-z0-9\s]/g, '')
       .split(/\s+/)
-      .filter(w => w.length > 4 && !['about', 'after', 'before', 'their', 'there', 'these', 'would', 'asian', 'dot'].includes(w))
+      .filter(w => w.length > 4 && !['about', 'after', 'before', 'their', 'there', 'these', 'would', 'news', 'feed'].includes(w))
       .slice(0, 4)
   }
 
@@ -458,7 +458,7 @@ async function scrapeUrlDirectly(url: string) {
     rawBlocks.push(...filteredBlocks)
   }
 
-  const metaTitle = title.endsWith(' - Asian Dot') ? title : `${title.substring(0, 45)} - Asian Dot`
+  const metaTitle = title.endsWith(' - The US News Feed') ? title : `${title.substring(0, 41)} - The US News Feed`
   const finalExcerpt = excerpt || (content.length > 180 ? content.substring(0, 180) + '...' : content)
   const metaDescription = finalExcerpt || (content.length > 140 ? content.substring(0, 140) + '...' : content)
 
@@ -698,7 +698,7 @@ export async function GET(req: NextRequest) {
   return NextResponse.json({ allOk, models: results }, { status: allOk ? 200 : 500 })
 }
 
-const SYSTEM_PROMPT = `You are an expert news editor and content writer for Asian Dot, a reputable English-language news website covering Asia-Pacific regional news, politics, business, culture, and technology.
+const SYSTEM_PROMPT = `You are an expert news editor and content writer for The US News Feed, a reputable news website covering United States news: national politics, Congress, the White House, courts, business, culture, and technology. Write in American English for a US audience.
 
 Your writing style is:
 - Professional, clear, and authoritative
@@ -884,7 +884,7 @@ export async function POST(req: NextRequest) {
         return ''
       }
 
-      // 5. Transform raw blocks into AsianDot Custom Mobile Editorial Format using Gemini 3.6 Flash
+      // 5. Transform raw blocks into The US News Feed Custom Mobile Editorial Format using Gemini 3.6 Flash
       let rawText = dedupedBlocks
         .filter((b: any) => b.type === 'paragraph' || b.type === 'heading')
         .map((b: any) => extractBlockText(b))
@@ -912,7 +912,7 @@ export async function POST(req: NextRequest) {
           const aiResponse = await generateText({
             model: primaryModel,
             system: SYSTEM_PROMPT,
-            prompt: `You are the lead editor at Asian Dot, an independent news publication. Synthesize the provided primary news report and complementary sources into an authoritative, in-depth news article.
+            prompt: `You are the lead editor at The US News Feed, an independent US news publication writing in American English for an American audience. Synthesize the provided primary news report and complementary sources into an authoritative, in-depth news article.
 
 PRIMARY ARTICLE HEADLINE: "${result.title}"
 PRIMARY ARTICLE CONTENT:
@@ -921,7 +921,7 @@ PRIMARY ARTICLE CONTENT:
 COMPLEMENTARY NEWS COVERAGE (FOR MULTI-PERSPECTIVE FACT CHECKING, BACKGROUND & CITATION):
 ${relatedContext}
 
-RULES FOR ASIANDOT MULTI-SOURCE EDITORIAL FORMAT:
+RULES FOR THE US NEWS FEED MULTI-SOURCE EDITORIAL FORMAT:
 1. TOTAL WORD COUNT: The ENTIRE article content body MUST be between 300 and 450 words total.
 2. DO NOT duplicate the article title in the body.
 3. DO NOT include any markdown headers (no ## or ###). Write only clean, cohesive paragraphs separated by blank lines.
@@ -929,7 +929,7 @@ RULES FOR ASIANDOT MULTI-SOURCE EDITORIAL FORMAT:
    - Paragraphs 1-2 (The Breaking Lead): Report the core factual developments clearly with key figures, dates, locations, and actions.
    - Paragraphs 3-4 (Background Context & History): Provide essential historical context, prior related events, and timeline explaining how this situation developed.
    - Paragraphs 5-6 (Official Statements & Journalistic Attribution): Synthesize official reactions, government filings, or verified reporting (e.g. "According to reports first corroborated by...", "Agency officials stated...").
-   - Paragraphs 7-8 (Broader Geopolitical & Regional Impact): Explain what this means for national or international policy, and what developments or proceedings are expected next.
+   - Paragraphs 7-8 (Broader National Impact): Explain what this means for Americans and for US national or foreign policy, and what developments or proceedings are expected next.
 5. 100% ORIGINAL SYNTHESIS: Synthesize all facts into an original, analytical journalistic narrative. NEVER copy verbatim sentences from any single source to ensure full copyright independence.
 6. LEAD EXCERPT: Write a COMPLETE, punchy summary sentence strictly between 120 and 160 characters long. It MUST be a complete, grammatically sound sentence ending with a period.
 7. CATEGORY CLASSIFICATION: Choose the single best category for this story from this list: [${categoryOptions}].
@@ -940,7 +940,7 @@ Return valid JSON in this exact format:
   "category": "One of [${categoryOptions}]",
   "excerpt": "A punchy, complete lead summary sentence strictly under 160 characters.",
   "content": "Paragraph 1 text\\n\\nParagraph 2 text\\n\\nParagraph 3 text\\n\\nParagraph 4 text\\n\\nParagraph 5 text\\n\\nParagraph 6 text",
-  "metaTitle": "SEO title under 60 chars - Asian Dot",
+  "metaTitle": "SEO title under 60 chars - The US News Feed",
   "metaDescription": "SEO description between 100 and 150 chars"
 }`,
           })
@@ -999,7 +999,7 @@ Return valid JSON in this exact format:
             result.content = buildLexicalJson(dedupedBlocks)
           }
         } catch (aiErr) {
-          console.warn('AsianDot AI formatting fallback to raw scraped blocks:', aiErr)
+          console.warn('The US News Feed AI formatting fallback to raw scraped blocks:', aiErr)
           result.content = buildLexicalJson(dedupedBlocks)
         }
       } else {
@@ -1017,7 +1017,7 @@ Return valid JSON in this exact format:
     switch (action) {
       case 'full':
         if (!title) return NextResponse.json({ error: 'Title is required' }, { status: 400 })
-        prompt = `Write an authoritative, in-depth news article for Asian Dot. Title: "${title}"
+        prompt = `Write an authoritative, in-depth news article for The US News Feed (a US news publication; use American English and explain relevance to American readers). Title: "${title}"
 
 RULES:
 1. Do NOT repeat the title in the body.
@@ -1031,14 +1031,14 @@ Return JSON in this exact format:
   "content": "Paragraph 1.\n\nParagraph 2.\n\nParagraph 3.\n\nParagraph 4.\n\nParagraph 5.\n\nParagraph 6.",
   "excerpt": "A complete, punchy lead summary strictly under 160 characters.",
   "tags": ["tag1", "tag2", "tag3"],
-  "metaTitle": "SEO optimized title, strictly between 50 and 60 characters long (including ' - Asian Dot' suffix)",
+  "metaTitle": "SEO optimized title, strictly between 50 and 60 characters long (including ' - The US News Feed' suffix)",
   "metaDescription": "SEO meta description, strictly between 100 and 150 characters long"
 }`
         break
 
       case 'content_only':
         if (!title) return NextResponse.json({ error: 'Title is required' }, { status: 400 })
-        prompt = `Write an authoritative, in-depth news article for Asian Dot. Title: "${title}"
+        prompt = `Write an authoritative, in-depth news article for The US News Feed (a US news publication; use American English and explain relevance to American readers). Title: "${title}"
 
 RULES:
 1. Do NOT repeat the title in the body.
@@ -1061,7 +1061,7 @@ Content snippet: "${content ? content.substring(0, 500) : ''}"
 Return JSON in this exact format:
 {
   "excerpt": "A punchy summary of the article strictly under 160 characters.",
-  "metaTitle": "SEO optimized title, strictly between 50 and 60 characters long (including ' - Asian Dot' suffix)",
+  "metaTitle": "SEO optimized title, strictly between 50 and 60 characters long (including ' - The US News Feed' suffix)",
   "metaDescription": "SEO meta description, strictly between 100 and 150 characters long"
 }`
         break
@@ -1112,7 +1112,7 @@ function enforceSeoLimits(seoData: any) {
   if (seoData.metaTitle && typeof seoData.metaTitle === 'string') {
     let title = seoData.metaTitle.trim();
     if (title.length > 60) {
-      const suffix = title.endsWith(' - Asian Dot') ? ' - Asian Dot' : (title.endsWith(' | Asian Dot') ? ' | Asian Dot' : '');
+      const suffix = title.endsWith(' - The US News Feed') ? ' - The US News Feed' : (title.endsWith(' | The US News Feed') ? ' | The US News Feed' : '');
       const maxPrefixLength = 60 - suffix.length;
       if (suffix) {
         let prefix = title.substring(0, title.length - suffix.length).trim();

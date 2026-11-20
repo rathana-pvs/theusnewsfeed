@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Article } from '@/types'
+import { formatRelativeDate } from '@/lib/utils'
 
 interface RelatedArticlesProps {
   articles: Article[]
@@ -9,16 +10,16 @@ interface RelatedArticlesProps {
 
 /**
  * Sits just above the bottom ad feed, which earns most of the revenue. On
- * phones it is a short list of headlines (~200px) so the feed stays close;
- * from `sm` up it becomes a row of image cards.
+ * phones it is a short list of headlines so the feed stays close; from `sm`
+ * up it becomes a row of image cards.
  */
 export function RelatedArticles({ articles, categoryName }: RelatedArticlesProps) {
   if (!articles || articles.length === 0) return null
 
   return (
-    <section className="mt-10">
+    <section className="mt-12">
       <div className="section-head !mb-2 sm:!mb-5">
-        <h2>{categoryName ? `More from ${categoryName}` : 'More stories'}</h2>
+        <h2>{categoryName ? `More from ${categoryName}` : 'Keep reading'}</h2>
       </div>
       <ul className="grid grid-cols-1 sm:grid-cols-3 sm:gap-6">
         {articles.slice(0, 3).map((article, i) => (
@@ -28,16 +29,20 @@ export function RelatedArticles({ articles, categoryName }: RelatedArticlesProps
             style={{ borderColor: 'var(--border)' }}
           >
             <Link href={`/article/${article.slug}`} className="group block">
-              <div className="hidden sm:block relative w-full mb-3" style={{ aspectRatio: '3 / 2', background: 'var(--bg-surface)' }}>
+              <div
+                className="hidden sm:block relative w-full mb-3 overflow-hidden rounded-lg"
+                style={{ aspectRatio: '3 / 2', background: 'var(--bg-surface)' }}
+              >
                 <Image
                   src={article.coverImage?.url || 'https://picsum.photos/seed/related/600/400'}
                   alt={article.coverImage?.alt || article.title}
                   fill
                   sizes="240px"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                 />
               </div>
-              <h3 className="headline" style={{ fontSize: 17, lineHeight: 1.25 }}>{article.title}</h3>
+              <h3 className="headline" style={{ fontSize: 17, lineHeight: 1.3 }}>{article.title}</h3>
+              {article.publishedAt && <p className="meta mt-1.5">{formatRelativeDate(article.publishedAt)}</p>}
             </Link>
           </li>
         ))}

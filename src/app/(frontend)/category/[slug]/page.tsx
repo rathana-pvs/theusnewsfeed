@@ -25,8 +25,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const category = (categories as Category[]).find((c) => c.slug === slug)
   if (!category) return { title: 'Category Not Found' }
 
-  const title = `${category.name} — Asian Dot`
-  const description = category.description || `Read the latest articles about ${category.name} on Asian Dot.`
+  const title = `${category.name} — The US News Feed`
+  const description = category.description || `Read the latest articles about ${category.name} on The US News Feed.`
 
   return {
     title: category.name,
@@ -38,13 +38,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: title,
       description: description,
       url: `/category/${slug}`,
-      siteName: 'Asian Dot',
+      siteName: 'The US News Feed',
       images: [
         {
           url: '/logo.png',
           width: 1024,
           height: 1024,
-          alt: 'Asian Dot Logo',
+          alt: 'The US News Feed Logo',
         },
       ],
       type: 'website',

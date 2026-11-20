@@ -17,13 +17,13 @@ import { adskeeper } from '@/lib/ads'
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://asiandot.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://theusnewsfeed.com'),
   title: {
-    default: 'Asian Dot — Independent Political Reporting',
-    template: '%s — Asian Dot',
+    default: 'The US News Feed — Independent Political Reporting',
+    template: '%s — The US News Feed',
   },
-  description: 'Asian Dot delivers sharp, independent political news coverage. Parliament, elections, international affairs, and more.',
-  keywords: ['politics', 'news', 'parliament', 'elections', 'asiandot'],
+  description: 'The US News Feed delivers sharp, independent coverage of American politics. Congress, the White House, elections, the courts, and more.',
+  keywords: ['US politics', 'US news', 'Congress', 'White House', 'elections', 'theusnewsfeed'],
   alternates: {
     canonical: '/',
   },
@@ -40,23 +40,23 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    siteName: 'Asian Dot',
-    title: 'Asian Dot — Independent Political Reporting',
-    description: 'Asian Dot delivers sharp, independent political news coverage. Parliament, elections, international affairs, and more.',
+    siteName: 'The US News Feed',
+    title: 'The US News Feed — Independent Political Reporting',
+    description: 'The US News Feed delivers sharp, independent coverage of American politics. Congress, the White House, elections, the courts, and more.',
     images: [
       {
         url: '/logo.png',
         width: 1024,
         height: 1024,
-        alt: 'Asian Dot Logo',
+        alt: 'The US News Feed Logo',
       },
     ],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Asian Dot — Independent Political Reporting',
-    description: 'Asian Dot delivers sharp, independent political news coverage. Parliament, elections, international affairs, and more.',
+    title: 'The US News Feed — Independent Political Reporting',
+    description: 'The US News Feed delivers sharp, independent coverage of American politics. Congress, the White House, elections, the courts, and more.',
     images: ['/logo.png'],
   },
   icons: {

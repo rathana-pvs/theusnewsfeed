@@ -14,7 +14,7 @@ dotenv.config({ path: path.resolve(process.cwd(), '.env.local') })
 dotenv.config({ path: path.resolve(process.cwd(), '.env') })
 
 const urlArg = process.argv.find((a) => a.startsWith('--url='))
-const SITE_URL = urlArg ? urlArg.split('=')[1] : (process.env.TARGET_URL || 'https://asiandot.com')
+const SITE_URL = urlArg ? urlArg.split('=')[1] : (process.env.TARGET_URL || 'https://theusnewsfeed.com')
 const API_URL = SITE_URL.replace(/\/$/, '')
 
 interface RelatedNewsSource {
@@ -176,7 +176,7 @@ async function main() {
   const offset = offsetArg ? parseInt(offsetArg.split('=')[1], 10) : 0
 
   console.log(`\n============================================================`)
-  console.log(`🌐 Asian Dot HTTP Article Batch Updater`)
+  console.log(`🌐 The US News Feed HTTP Article Batch Updater`)
   console.log(`   Target: ${API_URL}`)
   console.log(`   Limit: ${limit} articles | Offset: ${offset} | DryRun: ${isDryRun}`)
   console.log(`============================================================\n`)
@@ -253,7 +253,7 @@ async function main() {
     console.log(`   ↳ Found ${relatedSources.length} complementary source(s).`)
 
     // Step B: Synthesize with Gemini
-    const prompt = `You are the lead editor at Asian Dot, an independent news publication. Synthesize the provided primary news report and complementary sources into an authoritative, in-depth news article.
+    const prompt = `You are the lead editor at The US News Feed, an independent US news publication writing in American English for an American audience. Synthesize the provided primary news report and complementary sources into an authoritative, in-depth news article.
 
 PRIMARY ARTICLE HEADLINE: "${doc.title}"
 PRIMARY ARTICLE CONTENT:
@@ -262,7 +262,7 @@ PRIMARY ARTICLE CONTENT:
 COMPLEMENTARY NEWS COVERAGE (FOR MULTI-PERSPECTIVE FACT CHECKING, BACKGROUND & CITATION):
 ${relatedContext}
 
-RULES FOR ASIANDOT MULTI-SOURCE EDITORIAL FORMAT:
+RULES FOR THE US NEWS FEED MULTI-SOURCE EDITORIAL FORMAT:
 1. TOTAL WORD COUNT & DEPTH: The ENTIRE article content body MUST be between 320 and 420 words total. Do NOT write brief 1-sentence paragraphs. Each of the 6 to 8 paragraphs MUST contain 2 to 4 rich, detailed sentences (around 45 to 60 words per paragraph).
 2. DO NOT duplicate the article title in the body.
 3. DO NOT include any markdown headers (no ## or ###). Write only clean, cohesive paragraphs separated by blank lines (\\n\\n).
@@ -270,7 +270,7 @@ RULES FOR ASIANDOT MULTI-SOURCE EDITORIAL FORMAT:
    - Paragraphs 1-2 (The Breaking Lead): Report the core factual developments clearly with key figures, dates, locations, and actions.
    - Paragraphs 3-4 (Background Context & History): Provide essential historical context, prior related events, and timeline explaining how this situation developed.
    - Paragraphs 5-6 (Official Statements & Journalistic Attribution): Synthesize official reactions, government filings, or verified reporting (e.g. "According to reports first corroborated by...", "Agency officials stated...").
-   - Paragraphs 7-8 (Broader Geopolitical & Regional Impact): Explain what this means for national or international policy, and what developments or proceedings are expected next.
+   - Paragraphs 7-8 (Broader National Impact): Explain what this means for Americans and for US national or foreign policy, and what developments or proceedings are expected next.
 5. 100% ORIGINAL SYNTHESIS: Synthesize all facts into an original, analytical journalistic narrative. NEVER copy verbatim sentences from any single source to ensure full copyright independence.
 7. CATEGORY CLASSIFICATION: Choose the single best category for this story from this list: [${categoryNames}].`
 

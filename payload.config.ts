@@ -63,7 +63,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
     meta: {
-      titleSuffix: '— Asian Dot CMS',
+      titleSuffix: '— The US News Feed CMS',
     },
   },
   collections: [Articles, Categories, Authors, Media, Users, ShareLinks, StudioPublications],
@@ -84,14 +84,14 @@ export default buildConfig({
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI || 'postgresql://tribune:tribune123@localhost:5433/tribune',
+      connectionString: process.env.DATABASE_URI || 'postgresql://theusnewsfeed:theusnewsfeed_pass_123@localhost:5441/theusnewsfeed',
     },
   }),
   plugins: [
     seoPlugin({
       collections: ['articles'],
       uploadsCollection: 'media',
-      generateTitle: ({ doc }: { doc: any }) => `${doc?.title?.value} — Asian Dot`,
+      generateTitle: ({ doc }: { doc: any }) => `${doc?.title?.value} — The US News Feed`,
       generateDescription: ({ doc }: { doc: any }) => doc?.excerpt?.value,
     }),
     (config) => {
@@ -127,12 +127,12 @@ export default buildConfig({
   serverURL: siteUrl,
   cors: [
     siteUrl,
-    'https://asiandot.com',
-    'https://www.asiandot.com',
+    'https://theusnewsfeed.com',
+    'https://www.theusnewsfeed.com',
   ],
   csrf: [
     siteUrl,
-    'https://asiandot.com',
-    'https://www.asiandot.com',
+    'https://theusnewsfeed.com',
+    'https://www.theusnewsfeed.com',
   ],
 })

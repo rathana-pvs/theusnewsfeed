@@ -70,7 +70,7 @@ export function LiveTimeline({ updates }: LiveTimelineProps) {
             {/* Body */}
             <p
               className="text-sm leading-relaxed"
-              style={{ color: 'var(--text-secondary)', fontFamily: 'Source Serif 4, serif' }}
+              style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-sans)' }}
             >
               {update.body}
             </p>

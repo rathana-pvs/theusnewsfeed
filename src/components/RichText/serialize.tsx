@@ -90,7 +90,7 @@ export function serializeLexical(nodes: Node[], keyPrefix: string = ''): JSX.Ele
           <blockquote 
             key={elKey} 
             className="border-l-4 pl-6 py-2 my-8 italic text-xl leading-relaxed"
-            style={{ borderColor: 'var(--accent-gold)', color: 'var(--text-secondary)', fontFamily: 'Source Serif 4, serif' }}
+            style={{ borderColor: 'var(--accent-gold)', color: 'var(--text-secondary)', fontFamily: 'var(--font-sans)' }}
           >
             {children}
           </blockquote>
@@ -289,7 +289,7 @@ export function serializeLexical(nodes: Node[], keyPrefix: string = ''): JSX.Ele
           <Tag 
             key={elKey} 
             className="mb-6 text-lg leading-relaxed text-justify"
-            style={{ color: 'var(--text-secondary)', fontFamily: 'Source Serif 4, serif' }}
+            style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-sans)' }}
           >
             {children}
           </Tag>

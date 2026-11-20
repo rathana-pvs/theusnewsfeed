@@ -36,8 +36,8 @@ export const i18nStrings = {
     interviews: 'Interviews',
     // New UI Labels
     tagline: 'Independent Political Reporting',
-    organization: 'Asian Dot',
-    footerTagline: 'Independent political reporting you can trust. Asia-focused news delivered with integrity.',
+    organization: 'The US News Feed',
+    footerTagline: 'Independent political reporting you can trust. News from across America, delivered with integrity.',
     copyright: 'All rights reserved.',
     viewAll: 'View All',
     editorsPicks: "Editor's Picks",
