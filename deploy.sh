@@ -22,14 +22,14 @@ NODE_OPTIONS="--max-old-space-size=1536" npm run build
 
 # 3. Reload PM2 process
 echo "♻️  Reloading PM2 process..."
-pm2 reload asiandot
+pm2 reload theusnewsfeed
 
 # 4. Health Check
 echo "🔥 Checking application health..."
 max_attempts=12
 attempt=1
 while [ $attempt -le $max_attempts ]; do
-    if curl -s -f -H "Host: theusnewsfeed.com" http://localhost:3000 > /dev/null; then
+    if curl -s -f -H "Host: theusnewsfeed.com" http://127.0.0.1:3002 > /dev/null; then
         echo -e "${GREEN}✓ Application updated successfully!${NC}"
         break
     fi
@@ -39,7 +39,7 @@ while [ $attempt -le $max_attempts ]; do
 done
 
 if [ $attempt -gt $max_attempts ]; then
-    echo -e "${RED}❌ Deployment health check failed. View logs using: pm2 logs asiandot${NC}"
+    echo -e "${RED}❌ Deployment health check failed. View logs using: pm2 logs theusnewsfeed${NC}"
     exit 1
 fi
 
