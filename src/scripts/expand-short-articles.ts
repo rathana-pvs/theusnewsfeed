@@ -65,7 +65,7 @@ async function main() {
   }
 
   const googleAI = createGoogleGenerativeAI({ apiKey })
-  const model = googleAI('gemini-2.5-flash')
+  const model = googleAI('gemini-3.8-flash')
 
   const payload = await getPayload({ config })
 

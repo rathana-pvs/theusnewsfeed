@@ -188,7 +188,7 @@ async function main() {
   }
 
   const googleAI = createGoogleGenerativeAI({ apiKey })
-  const model = googleAI('gemini-2.5-flash')
+  const model = googleAI('gemini-3.8-flash')
 
   // 1. Authenticate over HTTP
   console.log('🔑 Authenticating via Payload REST API (rathana@asiandot.com)...')
