@@ -125,8 +125,10 @@ export default async function FrontendLayout({
         {process.env.NEXT_PUBLIC_GA_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}
-        <Script id="wau-init" strategy="afterInteractive">
-          {`var _wau = _wau || []; _wau.push(["dynamic", "zzpbthitpu", "t8q", "c4302bffffff", "small"]);`}
+        {/* whos.amung.us places its badge next to the script whose id is
+            "_wau" + the widget code ("t4l"), so the id must match. */}
+        <Script id="_waut4l" strategy="afterInteractive">
+          {`var _wau = _wau || []; _wau.push(["dynamic", "3mo2g09r9o", "t4l", "c4302bffffff", "small"]);`}
         </Script>
         {/* Visitor counter: loaded once the page has finished loading, so its
             ~18 requests don't compete with the article and ads on mobile data. */}
