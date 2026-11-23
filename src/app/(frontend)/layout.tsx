@@ -8,6 +8,7 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 import { NavigationProgress } from '@/components/layout/NavigationProgress'
 import Script from 'next/script'
 import { MobileSiteWidget } from '@/components/ads/MobileSiteWidget'
+import { ExitFeedWidget } from '@/components/ads/ExitFeedWidget'
 import { adskeeper } from '@/lib/ads'
 
 // Pages are cached and rebuilt at most once a minute; publishing an article
@@ -120,6 +121,7 @@ export default async function FrontendLayout({
         {adskeeper.mobileToaster && (
           <MobileSiteWidget widgetId={adskeeper.mobileToaster} />
         )}
+        {adskeeper.exitFeed && <ExitFeedWidget widgetId={adskeeper.exitFeed} />}
         {process.env.NEXT_PUBLIC_GA_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}

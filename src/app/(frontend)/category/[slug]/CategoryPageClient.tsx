@@ -171,7 +171,9 @@ export function CategoryPageClient({ category, initialArticles }: CategoryPageCl
               ))}
             </div>
 
-            {adskeeper.categoryBottom && (
+            {/* The feed scrolls endlessly, so it only appears once there is
+                nothing left to load; above "Load More" it would bury the button. */}
+            {adskeeper.categoryBottom && !hasMore && (
               <div className="mt-12">
                 <AdskeeperWidget
                   widgetId={adskeeper.categoryBottom}

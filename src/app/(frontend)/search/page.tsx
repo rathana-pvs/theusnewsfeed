@@ -299,7 +299,8 @@ export default function SearchPage() {
               ))}
             </div>
 
-            {adskeeper.searchFeed && (
+            {/* Endless feed: only after the last results, never above "Load More". */}
+            {adskeeper.searchFeed && results.length <= visibleCount && (
               <div className="mt-12">
                 <AdskeeperWidget
                   widgetId={adskeeper.searchFeed}
