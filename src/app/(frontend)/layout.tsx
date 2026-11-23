@@ -61,9 +61,10 @@ export const metadata: Metadata = {
     images: ['/logo.png'],
   },
   icons: {
-    icon: { url: '/favicon-48.png', sizes: '48x48', type: 'image/png' },
-    shortcut: '/favicon-48.png',
-    apple: { url: '/apple-touch-icon.png', sizes: '180x180' },
+    // Bump ?v= whenever the icon files change; browsers cache favicons hard.
+    icon: { url: '/favicon-48.png?v=2', sizes: '48x48', type: 'image/png' },
+    shortcut: '/favicon-48.png?v=2',
+    apple: { url: '/apple-touch-icon.png?v=2', sizes: '180x180' },
   },
 }
 
